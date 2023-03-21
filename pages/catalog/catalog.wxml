@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="search">
+    <navigator url="/pages/search/search" class="input">
+      <image class="icon"></image>
+      <!-- <text class="txt">商品搜索, 共{{goodsCount}}款好物</text> -->
+      <text class="txt">商品搜索</text>
+    </navigator>
+  </view>
+  <view class="catalog">
+    <scroll-view class="nav" scroll-y="true">
+      <view class="item {{ currentCategory.id == item.id ? 'active' : ''}}" wx:for="{{navList}}" wx:key="id" data-id="{{item.id}}" data-type="{{item.type}}" data-index="{{index}}" bindtap="switchCate">{{item.name}}</view>
+    </scroll-view>
+    <scroll-view class="cate" scroll-y="true" bindscrolltolower="changeCategory">
+      <navigator class="good" wx:for="{{goods}}" wx:key="id" url="/pages/goods/goods?id={{item.id}}">
+        <image class="img" src="{{item.firstPic}}" background-size="cover" lazy-load="true"></image>
+        <view class="bdd" >
+          <text class="goodname">{{item.name}}</text>
+          <text class="desc">{{item.commodityDesc}}</text>
+          <view class="pg">
+            <text class="dzprice">￥{{item.currentPrice}}</text>
+            <text class="yjprice" wx:if="{{item.originalPrice !== item.currentPrice}}">￥{{item.originalPrice}}</text>
+          </view>
+        </view>
+      </navigator>
+    </scroll-view>
+  </view>
+</view>

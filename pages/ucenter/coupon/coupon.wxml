@@ -1,0 +1,30 @@
+<view class="container">
+  <!-- <show-empty-data wx:if="{{couponList.length<=0}}" showType="NO_COUPON"></show-empty-data> -->
+  <view class="coupon-list">
+    <block wx:for="{{couponList}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+      <view class="item" style="background: {{item.isValidate==1?'linear-gradient(to right,#cfa568,#e3bf79)':'linear-gradient(to right,#999,#DDDDDD)'}}">
+         <!-- <view class="tag">新人专享</view>  -->
+        <view class="content">
+          <view class="left">
+            <view class="name">{{item.couponTypeDesc}}</view>
+            <view class="time">有效期至{{item.expireAt}}</view>
+          </view>
+          <view class="right">
+            <image wx:if="{{item.isValidate==1}}" class='mid-img' src='../../../static/images/coupon_ksy.png'></image>
+    <image wx:if="{{item.isValidate==2}}" class='mid-img' src='../../../static/images/coupon_ysy.png'></image>
+    <image wx:if="{{item.isValidate==0}}" class='mid-img' src='../../../static/images/coupon_gq.png'></image>
+          </view>
+        </view>
+        <view class="condition">
+          <text class="txt"> 减￥{{item.discounts}}</text>
+        </view>
+      </view>
+    </block>
+
+    </view>
+     <view class="empty-view" wx:if="{{ couponList.length <= 0 }}">
+      <image class="icon" src="../../../static/images/allorder.png"></image>
+      <text class="text">无优惠卷信息</text>
+    </view>
+
+</view>
